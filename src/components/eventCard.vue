@@ -1,6 +1,7 @@
 <template>
     <p class="event-item" :class="cssClasses"
-       @click="$emit('click', event, $event)">
+       @click="$emit('click', event, $event)"
+       :style="getStyle">
         <slot :event="event" v-if="showTitle">
             Def: {{ event.title }}
         </slot>
@@ -44,6 +45,9 @@
             },
             end () {
                 return moment(this.event.end);
+            },
+            getStyle(){
+                return this.event.style ? this.event.style : {}
             }
         }
     }
